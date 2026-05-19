@@ -1,0 +1,43 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #fafafa;
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #1a1a1a;
+  transition: all 0.15s;
+}
+
+button:hover { opacity: 0.85; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+input, textarea {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 14px;
+  border: 2px solid #f0e8d8;
+  border-radius: 8px;
+  background: #fff;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+input:focus, textarea:focus { border-color: #ef9f27; }
+textarea { resize: vertical; min-height: 80px; }
+a { color: #ba7517; text-decoration: none; }
+a:hover { text-decoration: underline; }
