@@ -30,7 +30,7 @@ export default function Home() {
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ fontSize: '13px', background: '#fff9f0', border: '1px solid #ef9f27', borderRadius: '20px', padding: '5px 14px', color: '#ba7517', fontFamily: 'monospace', fontWeight: '600' }}>
-              {address.slice(0,6)}...{address.slice(-4)}
+              {address?.slice(0,6)}...{address?.slice(-4)}
             </span>
             <button onClick={() => disconnect()} style={{ fontSize: '13px', padding: '5px 12px', color: '#888', border: '1px solid #eee', borderRadius: '8px' }}>Disconnect</button>
           </div>
