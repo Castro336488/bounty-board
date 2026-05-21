@@ -24,7 +24,7 @@ export default function Home() {
           <span style={{ fontSize: '11px', background: '#fff9f0', color: '#ba7517', border: '1px solid #ef9f27', borderRadius: '20px', padding: '3px 10px', fontWeight: '600' }}>Arc Testnet</span>
         </div>
         {!isConnected ? (
-          <button onClick={() => connect({ connector: injected() })} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '10px 22px', borderRadius: '8px', fontWeight: '700', fontSize: '14px' }}>
+          <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '10px 22px', borderRadius: '8px', fontWeight: '700', fontSize: '14px' }}>
             Connect Wallet
           </button>
         ) : (
@@ -32,7 +32,7 @@ export default function Home() {
             <span style={{ fontSize: '13px', background: '#fff9f0', border: '1px solid #ef9f27', borderRadius: '20px', padding: '5px 14px', color: '#ba7517', fontFamily: 'monospace', fontWeight: '600' }}>
               {address?.slice(0,6)}...{address?.slice(-4)}
             </span>
-            <button onClick={() => disconnect()} style={{ fontSize: '13px', padding: '5px 12px', color: '#888', border: '1px solid #eee', borderRadius: '8px' }}>Disconnect</button>
+            <button onClick={() => setTimeout(() => disconnect(), 0)} style={{ fontSize: '13px', padding: '5px 12px', color: '#888', border: '1px solid #eee', borderRadius: '8px' }}>Disconnect</button>
           </div>
         )}
       </header>
@@ -51,7 +51,7 @@ export default function Home() {
             <p style={{ fontSize: '18px', color: '#666', maxWidth: '480px', margin: '0 auto 2.5rem', lineHeight: '1.6' }}>
               A trustless bounty board where USDC is locked in escrow and released automatically when work is approved.
             </p>
-            <button onClick={() => connect({ connector: injected() })} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '14px 36px', borderRadius: '10px', fontWeight: '800', fontSize: '16px', marginBottom: '1rem' }}>
+            <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '14px 36px', borderRadius: '10px', fontWeight: '800', fontSize: '16px', marginBottom: '1rem' }}>
               Launch App →
             </button>
             <p style={{ fontSize: '13px', color: '#aaa', marginTop: '1rem' }}>No signup · Connect MetaMask · Powered by USDC</p>
