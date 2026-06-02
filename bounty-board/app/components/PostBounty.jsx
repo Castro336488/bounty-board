@@ -5,8 +5,7 @@ import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { parseUnits } from 'viem'
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../contract'
 
-export default function PostBounty() {
-  const [open, setOpen] = useState(false)
+export default function PostBounty({ onSuccess }) {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [reward, setReward] = useState('')
@@ -25,41 +24,43 @@ export default function PostBounty() {
       value: amount,
     }, {
       onSuccess: () => {
-        setTitle(''); setDesc(''); setReward(''); setOpen(false)
+        setTitle(''); setDesc(''); setReward('')
+        if (onSuccess) onSuccess()
       },
       onError: (e) => console.error('error:', e)
     })
   }
 
   return (
-    <div style={{ marginBottom: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h2 style={{ fontSize: '17px', fontWeight: '700' }}>Open bounties</h2>
-        <button onClick={() => setOpen(!open)} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '9px 20px', borderRadius: '8px', fontWeight: '700' }}>+ Post bounty</button>
+    <div>
+      <div style={{ marginBottom: '1.75rem' }}>
+        <h1 style={{ fontSize: '20px', fontWeight: '600', color: '#fff', marginBottom: '4px' }}>Post a Bounty</h1>
+        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)' }}>Lock USDC in escrow and get work done</p>
       </div>
 
-      {open && (
-        <div style={{ background: '#fff', border: '2px solid #f0e8d8', borderRadius: '12px', padding: '1.5rem', marginBottom: '1.5rem' }}>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', fontSize: '13px', color: '#888', marginBottom: '4px', fontWeight: '600' }}>Title</label>
-            <input value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g. Build a swap UI for Arc" />
-          </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', fontSize: '13px', color: '#888', marginBottom: '4px', fontWeight: '600' }}>Description</label>
-            <textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder="Describe the task and deliverables..." />
-          </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', fontSize: '13px', color: '#888', marginBottom: '4px', fontWeight: '600' }}>Reward (USDC)</label>
-            <input type="number" value={reward} onChange={e => setReward(e.target.value)} placeholder="e.g. 10" />
-          </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <button onClick={handlePost} disabled={isLoading} style={{ background: '#ef9f27', color: '#fff', border: 'none', fontWeight: '700' }}>
-              {isLoading ? 'Posting...' : 'Lock & post'}
-            </button>
-            <button onClick={() => setOpen(false)}>Cancel</button>
-          </div>
+      <div style={{ maxWidth: '560px', background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.75rem' }}>
+        <div style={{ marginBottom: '1.25rem' }}>
+          <label style={{ display: 'block', fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginBottom: '6px', fontWeight: '600', letterSpacing: '0.5px' }}>TITLE</label>
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g. Build a swap UI for Arc" />
         </div>
-      )}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <label style={{ display: 'block', fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginBottom: '6px', fontWeight: '600', letterSpacing: '0.5px' }}>DESCRIPTION</label>
+          <textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder="Describe the task, deliverables and requirements..." />
+        </div>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <label style={{ display: 'block', fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginBottom: '6px', fontWeight: '600', letterSpacing: '0.5px' }}>REWARD (USDC)</label>
+          <input type="number" value={reward} onChange={e => setReward(e.target.value)} placeholder="e.g. 10" />
+        </div>
+
+        <div style={{ background: 'rgba(91,141,238,0.08)', border: '0.5px solid rgba(91,141,238,0.2)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1.5rem', fontSize: '12px', color: 'rgba(255,255,255,0.4)' }}>
+          💡 USDC will be locked in the smart contract escrow until you approve a submission or cancel the bounty.
+        </div>
+
+        <button onClick={handlePost} disabled={isLoading}
+          style={{ width: '100%', background: 'linear-gradient(135deg, #1a3a7c, #2d5dc0)', color: '#fff', border: '0.5px solid rgba(91,141,238,0.3)', fontWeight: '600', padding: '11px', borderRadius: '8px', fontSize: '14px' }}>
+          {isLoading ? 'Posting...' : '🔒 Lock USDC & Post Bounty'}
+        </button>
+      </div>
     </div>
   )
 }

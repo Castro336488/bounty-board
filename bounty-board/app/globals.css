@@ -2,8 +2,8 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #fafafa;
-  color: #1a1a1a;
+  background: #071020;
+  color: #fff;
   font-size: 15px;
   line-height: 1.6;
 }
@@ -12,32 +12,33 @@ button {
   cursor: pointer;
   font-family: inherit;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #fff;
-  color: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
   transition: all 0.15s;
 }
 
-button:hover { opacity: 0.85; }
+button:hover { background: rgba(255,255,255,0.1); }
 button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 input, textarea {
   font-family: inherit;
   font-size: 14px;
   padding: 10px 14px;
-  border: 2px solid #f0e8d8;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
-  background: #fff;
-  color: #1a1a1a;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
   outline: none;
   transition: border-color 0.15s;
   width: 100%;
 }
 
-input:focus, textarea:focus { border-color: #ef9f27; }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+input:focus, textarea:focus { border-color: #5b8dee; }
 textarea { resize: vertical; min-height: 80px; }
-a { color: #ba7517; text-decoration: none; }
+a { color: #5b8dee; text-decoration: none; }
 a:hover { text-decoration: underline; }

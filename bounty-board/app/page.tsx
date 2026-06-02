@@ -1,15 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { useAccount, useConnect } from 'wagmi'
 import { injected } from 'wagmi/connectors'
+import Sidebar from './components/Sidebar'
+import Dashboard from './components/Dashboard'
 import BountyList from './components/BountyList'
 import PostBounty from './components/PostBounty'
+import Profile from './components/Profile'
+import Settings from './components/Settings'
 
 export default function Home() {
-  const { address, isConnected } = useAccount()
+  const { isConnected } = useAccount()
   const { connect } = useConnect()
-  const { disconnect } = useDisconnect()
+  const [activePage, setActivePage] = useState('dashboard')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => { setMounted(true) }, [])
@@ -17,119 +21,73 @@ export default function Home() {
   if (!mounted) return null
 
   return (
-    <div>
-      <header style={{ background: '#fff', borderBottom: '2px solid #ef9f27', padding: '0 2rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ fontSize: '20px', fontWeight: '800', letterSpacing: '-0.5px' }}>BOUNTY<span style={{ color: '#ef9f27' }}>BOARD</span></span>
-          <span style={{ fontSize: '11px', background: '#fff9f0', color: '#ba7517', border: '1px solid #ef9f27', borderRadius: '20px', padding: '3px 10px', fontWeight: '600' }}>Arc Testnet</span>
-        </div>
-        {!isConnected ? (
-          <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '10px 22px', borderRadius: '8px', fontWeight: '700', fontSize: '14px' }}>
-            Connect Wallet
-          </button>
-        ) : (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '13px', background: '#fff9f0', border: '1px solid #ef9f27', borderRadius: '20px', padding: '5px 14px', color: '#ba7517', fontFamily: 'monospace', fontWeight: '600' }}>
-              {address?.slice(0,6)}...{address?.slice(-4)}
-            </span>
-            <button onClick={() => setTimeout(() => disconnect(), 0)} style={{ fontSize: '13px', padding: '5px 12px', color: '#888', border: '1px solid #eee', borderRadius: '8px' }}>Disconnect</button>
-          </div>
-        )}
-      </header>
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'linear-gradient(135deg, #071020 0%, #0a1628 40%, #0d1f3c 100%)' }}>
 
-      {!isConnected ? (
-        <div>
-          <div style={{ background: 'linear-gradient(135deg, #fff9f0 0%, #fff3dc 100%)', borderBottom: '2px solid #ef9f27', padding: '5rem 2rem', textAlign: 'center' }}>
-            <div style={{ display: 'inline-block', background: '#ef9f27', color: '#fff', fontSize: '12px', fontWeight: '700', borderRadius: '20px', padding: '4px 14px', marginBottom: '1.5rem', letterSpacing: '0.5px' }}>
+      {/* Floating Arc logo watermarks */}
+      <svg style={{ position: 'fixed', top: '-50px', right: '5%', width: '350px', height: '350px', opacity: 0.025, pointerEvents: 'none', zIndex: 0 }} viewBox="0 0 100 100">
+        <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
+        <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
+      </svg>
+      <svg style={{ position: 'fixed', bottom: '-60px', right: '30%', width: '250px', height: '250px', opacity: 0.02, pointerEvents: 'none', zIndex: 0 }} viewBox="0 0 100 100">
+        <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
+        <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
+      </svg>
+
+      <Sidebar activePage={activePage} setActivePage={setActivePage} />
+
+      {/* Main content */}
+      <div style={{ marginLeft: '220px', flex: 1, minHeight: '100vh', position: 'relative', zIndex: 1 }}>
+
+        {!isConnected ? (
+          /* Landing page */
+          <div style={{ maxWidth: '600px', margin: '0 auto', padding: '6rem 2rem', textAlign: 'center' }}>
+            <svg style={{ width: '80px', height: '80px', margin: '0 auto 1.5rem', opacity: 0.8 }} viewBox="0 0 100 100">
+              <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
+              <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
+            </svg>
+            <div style={{ display: 'inline-block', background: 'rgba(91,141,238,0.15)', color: '#5b8dee', fontSize: '12px', fontWeight: '600', borderRadius: '20px', padding: '4px 14px', marginBottom: '1.5rem', border: '0.5px solid rgba(91,141,238,0.3)', letterSpacing: '0.5px' }}>
               LIVE ON ARC TESTNET
             </div>
-            <h1 style={{ fontSize: '52px', fontWeight: '900', lineHeight: '1.1', marginBottom: '1.25rem', letterSpacing: '-1px' }}>
+            <h1 style={{ fontSize: '42px', fontWeight: '700', lineHeight: '1.15', marginBottom: '1.25rem', letterSpacing: '-1px' }}>
               Post tasks.<br />
-              <span style={{ color: '#ef9f27' }}>Earn USDC.</span><br />
+              <span style={{ color: '#5b8dee' }}>Earn USDC.</span><br />
               Build on Arc.
             </h1>
-            <p style={{ fontSize: '18px', color: '#666', maxWidth: '480px', margin: '0 auto 2.5rem', lineHeight: '1.6' }}>
+            <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
               A trustless bounty board where USDC is locked in escrow and released automatically when work is approved.
             </p>
-            <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)} style={{ background: '#ef9f27', color: '#fff', border: 'none', padding: '14px 36px', borderRadius: '10px', fontWeight: '800', fontSize: '16px', marginBottom: '1rem' }}>
-              Launch App →
+            <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)}
+              style={{ background: 'linear-gradient(135deg, #1a3a7c, #2d5dc0)', color: '#fff', border: '0.5px solid rgba(91,141,238,0.4)', padding: '13px 36px', borderRadius: '10px', fontWeight: '600', fontSize: '15px', marginBottom: '1rem' }}>
+              Connect Wallet to Start →
             </button>
-            <p style={{ fontSize: '13px', color: '#aaa', marginTop: '1rem' }}>No signup · Connect MetaMask · Powered by USDC</p>
-          </div>
+            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)', marginTop: '1rem' }}>No signup · MetaMask · Powered by USDC</p>
 
-          <div style={{ padding: '4rem 2rem', maxWidth: '860px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <span style={{ fontSize: '12px', fontWeight: '700', color: '#ba7517', letterSpacing: '1px' }}>HOW IT WORKS</span>
-              <h2 style={{ fontSize: '32px', fontWeight: '800', marginTop: '8px' }}>Three simple steps</h2>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
+            {/* How it works */}
+            <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', textAlign: 'left' }}>
               {[
-                { step: '01', title: 'Post a bounty', desc: 'Describe the task and lock your USDC reward into the smart contract escrow.', icon: '📋' },
-                { step: '02', title: 'Solver submits work', desc: 'Anyone can pick up the bounty and submit a link to their completed work.', icon: '⚡' },
-                { step: '03', title: 'Approve & pay', desc: 'Review the work and approve it. USDC is released instantly to the solver.', icon: '✅' },
+                { step: '01', title: 'Post a bounty', desc: 'Lock USDC in escrow' },
+                { step: '02', title: 'Submit work', desc: 'Solvers compete for it' },
+                { step: '03', title: 'Approve & pay', desc: 'USDC releases instantly' },
               ].map(s => (
-                <div key={s.step} style={{ background: '#fff', border: '2px solid #f0e8d8', borderRadius: '14px', padding: '1.75rem', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ fontSize: '48px', fontWeight: '900', color: '#f5e4c0', position: 'absolute', top: '10px', right: '16px', lineHeight: 1 }}>{s.step}</div>
-                  <div style={{ fontSize: '28px', marginBottom: '12px' }}>{s.icon}</div>
-                  <div style={{ fontSize: '16px', fontWeight: '700', marginBottom: '8px' }}>{s.title}</div>
-                  <div style={{ fontSize: '14px', color: '#666', lineHeight: '1.6' }}>{s.desc}</div>
+                <div key={s.step} style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '1rem' }}>
+                  <div style={{ fontSize: '11px', color: '#5b8dee', fontWeight: '600', marginBottom: '6px' }}>{s.step}</div>
+                  <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '4px' }}>{s.title}</div>
+                  <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)' }}>{s.desc}</div>
                 </div>
               ))}
             </div>
           </div>
-
-          <div style={{ background: '#fff9f0', borderTop: '2px solid #f0e8d8', borderBottom: '2px solid #f0e8d8', padding: '4rem 2rem' }}>
-            <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <span style={{ fontSize: '12px', fontWeight: '700', color: '#ba7517', letterSpacing: '1px' }}>FEATURES</span>
-                <h2 style={{ fontSize: '32px', fontWeight: '800', marginTop: '8px' }}>Why BountyBoard?</h2>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
-                {[
-                  { icon: '🔒', title: 'Trustless escrow', desc: 'USDC locked in smart contract. No middleman.' },
-                  { icon: '⚡', title: 'Instant payouts', desc: 'Sub-second finality on Arc Testnet.' },
-                  { icon: '💵', title: 'USDC native', desc: 'Stable payments, no price volatility.' },
-                  { icon: '🌍', title: 'Permissionless', desc: 'Anyone can post or solve bounties.' },
-                ].map(f => (
-                  <div key={f.title} style={{ background: '#fff', border: '1px solid #f0e8d8', borderRadius: '12px', padding: '1.25rem' }}>
-                    <div style={{ fontSize: '24px', marginBottom: '8px' }}>{f.icon}</div>
-                    <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '4px' }}>{f.title}</div>
-                    <div style={{ fontSize: '13px', color: '#888' }}>{f.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        ) : (
+          /* App pages */
+          <div style={{ padding: '2rem 2.5rem', maxWidth: '900px' }}>
+            {activePage === 'dashboard' && <Dashboard setActivePage={setActivePage} />}
+            {activePage === 'browse' && <BountyList />}
+            {activePage === 'post' && <PostBounty onSuccess={() => setActivePage('browse')} />}
+            {activePage === 'profile' && <Profile />}
+            {activePage === 'settings' && <Settings />}
           </div>
-
-          <div style={{ padding: '4rem 2rem', maxWidth: '640px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <span style={{ fontSize: '12px', fontWeight: '700', color: '#ba7517', letterSpacing: '1px' }}>FAQ</span>
-              <h2 style={{ fontSize: '32px', fontWeight: '800', marginTop: '8px' }}>Common questions</h2>
-            </div>
-            {[
-              { q: 'What is BountyBoard?', a: 'BountyBoard is a trustless on-chain platform where anyone can post tasks with USDC rewards. Solvers complete the work and get paid automatically via smart contract.' },
-              { q: 'What wallet do I need?', a: 'Any EVM wallet works — MetaMask is recommended. Make sure to add Arc Testnet (Chain ID 5042002) and get test USDC from faucet.circle.com.' },
-              { q: 'Is my USDC safe?', a: 'Yes. USDC is locked in the smart contract and can only be released to the approved solver or refunded to the poster if cancelled.' },
-              { q: 'What is Arc Testnet?', a: "Arc is Circle's Layer-1 blockchain built for stablecoin-native finance. It uses USDC as the native gas token with sub-second finality." },
-            ].map(f => (
-              <div key={f.q} style={{ borderBottom: '1px solid #f0e8d8', padding: '1.25rem 0' }}>
-                <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '6px' }}>{f.q}</div>
-                <div style={{ fontSize: '14px', color: '#666', lineHeight: '1.6' }}>{f.a}</div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ background: '#1a1a1a', color: '#fff', padding: '2rem', textAlign: 'center' }}>
-            <div style={{ fontSize: '16px', fontWeight: '800', marginBottom: '8px' }}>BOUNTY<span style={{ color: '#ef9f27' }}>BOARD</span></div>
-            <div style={{ fontSize: '13px', color: '#666' }}>Built on Arc Testnet · Powered by USDC</div>
-          </div>
-        </div>
-      ) : (
-        <main style={{ maxWidth: '860px', margin: '0 auto', padding: '2rem 1.5rem' }}>
-          <PostBounty />
-          <BountyList />
-        </main>
-      )}
+        )}
+      </div>
     </div>
   )
 }
