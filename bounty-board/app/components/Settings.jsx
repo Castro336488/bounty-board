@@ -36,7 +36,7 @@ export default function Settings() {
         <h2 style={{ fontSize: '13px', fontWeight: '600', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', marginBottom: '10px' }}>CONTRACT</h2>
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
           {[
-            { label: 'BountyBoard V2', value: '0x49Ec4B...D80aCB' },
+            { label: 'BountyBoard V3', value: '0x7675D2...78683' },s
             { label: 'USDC', value: '0x360000...000000' },
             { label: 'Version', value: 'V2 — Multi-submission' },
           ].map((item, i) => (
