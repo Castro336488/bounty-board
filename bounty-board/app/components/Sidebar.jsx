@@ -13,6 +13,7 @@ export default function Sidebar({ activePage, setActivePage }) {
     { id: 'browse', label: 'Browse Bounties', icon: '📋' },
     { id: 'post', label: 'Post Bounty', icon: '➕' },
     { id: 'profile', label: 'My Profile', icon: '👤' },
+    { id: 'about', label: 'About', icon: 'ℹ️' },
     { id: 'settings', label: 'Settings', icon: '⚙️' },
   ]
 

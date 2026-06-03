@@ -9,6 +9,7 @@ import BountyList from './components/BountyList'
 import PostBounty from './components/PostBounty'
 import Profile from './components/Profile'
 import Settings from './components/Settings'
+import About from './components/About'
 
 export default function Home() {
   const { isConnected } = useAccount()
@@ -85,6 +86,7 @@ export default function Home() {
             {activePage === 'post' && <PostBounty onSuccess={() => setActivePage('browse')} />}
             {activePage === 'profile' && <Profile />}
             {activePage === 'settings' && <Settings />}
+{activePage === 'about' && <About />}
           </div>
         )}
       </div>
