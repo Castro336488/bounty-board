@@ -24,7 +24,7 @@ button {
 button:hover { background: rgba(255,255,255,0.1); }
 button:disabled { opacity: 0.45; cursor: not-allowed; }
 
-input, textarea {
+input, textarea, select {
   font-family: inherit;
   font-size: 14px;
   padding: 10px 14px;
@@ -38,7 +38,106 @@ input, textarea {
 }
 
 input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
-input:focus, textarea:focus { border-color: #5b8dee; }
+input:focus, textarea:focus, select:focus { border-color: #5b8dee; }
 textarea { resize: vertical; min-height: 80px; }
 a { color: #5b8dee; text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* Layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(160deg, #071020 0%, #0a1628 60%, #0d1f3c 100%);
+  border-right: 0.5px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main-content {
+  margin-left: 220px;
+  flex: 1;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-bottom-nav {
+  display: none;
+}
+
+.mobile-header {
+  display: none;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .sidebar { width: 180px; min-width: 180px; }
+  .main-content { margin-left: 180px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+
+  .main-content {
+    margin-left: 0;
+    padding-bottom: 70px;
+    width: 100%;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: linear-gradient(160deg, #071020 0%, #0a1628 100%);
+    border-top: 0.5px solid rgba(255,255,255,0.1);
+    padding: 8px 0 16px;
+  }
+
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: linear-gradient(160deg, #071020 0%, #0a1628 100%);
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .page-content {
+    padding: 1.25rem 1rem !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .bounty-card-actions {
+    flex-direction: column;
+  }
+
+  h1 { font-size: 18px !important; }
+  h2 { font-size: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
