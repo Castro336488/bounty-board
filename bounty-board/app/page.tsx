@@ -46,100 +46,108 @@ export default function Home() {
           <div style={{ fontSize: '10px', background: 'rgba(91,141,238,0.15)', color: '#5b8dee', border: '0.5px solid rgba(91,141,238,0.3)', borderRadius: '20px', padding: '3px 10px' }}>Arc Testnet</div>
         </div>
 
-        {!isConnected ? (
-          <div style={{ maxWidth: '600px', margin: '0 auto', padding: '3rem 1.25rem 4rem' }}>
+        <div style={{ minHeight: '100vh', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '480px', margin: '0 auto' }}>
 
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <svg style={{ width: '60px', height: '60px', margin: '0 auto 1.25rem', opacity: 0.8 }} viewBox="0 0 100 100">
-                <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
-                <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
-              </svg>
-              <div style={{ display: 'inline-block', background: 'rgba(91,141,238,0.15)', color: '#5b8dee', fontSize: '11px', fontWeight: '600', borderRadius: '20px', padding: '4px 14px', marginBottom: '1.25rem', border: '0.5px solid rgba(91,141,238,0.3)', letterSpacing: '0.5px' }}>
-                LIVE ON ARC TESTNET
-              </div>
-              <h1 style={{ fontSize: '36px', fontWeight: '700', lineHeight: '1.15', marginBottom: '1rem', letterSpacing: '-1px' }}>
-                Post tasks.<br />
-                <span style={{ color: '#5b8dee' }}>Earn USDC.</span><br />
-                Build on Arc.
-              </h1>
-              <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.4)', marginBottom: '2rem', lineHeight: '1.7' }}>
-                A trustless bounty board where USDC is locked in escrow and released automatically when work is approved.
-              </p>
-              <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)}
-                style={{ background: 'linear-gradient(135deg, #1a3a7c, #2d5dc0)', color: '#fff', border: '0.5px solid rgba(91,141,238,0.4)', padding: '12px 32px', borderRadius: '10px', fontWeight: '600', fontSize: '15px', width: '100%', maxWidth: '300px' }}>
-                Connect Wallet to Start →
-              </button>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)', marginTop: '1rem' }}>No signup · MetaMask · Powered by USDC</p>
-            </div>
+  {/* Header */}
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+    <div style={{ fontSize: '18px', fontWeight: '700', color: '#fff' }}>Bounty<span style={{ color: '#5b8dee' }}>Board</span></div>
+    <div style={{ fontSize: '10px', background: 'rgba(91,141,238,0.15)', color: '#5b8dee', border: '0.5px solid rgba(91,141,238,0.3)', borderRadius: '20px', padding: '3px 10px' }}>Arc Testnet</div>
+  </div>
 
-            {/* How it works */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', marginBottom: '2rem' }}>
-              {[
-                { step: '01', title: 'Post a bounty', desc: 'Lock USDC in escrow' },
-                { step: '02', title: 'Submit work', desc: 'Solvers compete for it' },
-                { step: '03', title: 'Approve & pay', desc: 'USDC releases instantly' },
-              ].map(s => (
-                <div key={s.step} style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '1rem', textAlign: 'center' }}>
-                  <div style={{ fontSize: '11px', color: '#5b8dee', fontWeight: '600', marginBottom: '6px' }}>{s.step}</div>
-                  <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '4px' }}>{s.title}</div>
-                  <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)' }}>{s.desc}</div>
-                </div>
-              ))}
-            </div>
+  {/* Hero card */}
+  <div style={{ background: 'linear-gradient(135deg, rgba(26,58,124,0.5), rgba(45,93,192,0.3))', border: '0.5px solid rgba(91,141,238,0.3)', borderRadius: '16px', padding: '1.75rem' }}>
+    <svg style={{ width: '40px', height: '40px', marginBottom: '1rem', opacity: 0.8 }} viewBox="0 0 100 100">
+      <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
+      <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
+    </svg>
+    <h1 style={{ fontSize: '26px', fontWeight: '700', color: '#fff', lineHeight: '1.2', marginBottom: '8px' }}>
+      Post tasks.<br/><span style={{ color: '#5b8dee' }}>Earn USDC.</span>
+    </h1>
+    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.6', marginBottom: '1.25rem' }}>
+      Trustless bounty board on Arc Testnet. USDC locked in escrow, released automatically when work is approved.
+    </p>
+    <button onClick={() => setTimeout(() => connect({ connector: injected() }), 0)}
+      style={{ width: '100%', background: 'linear-gradient(135deg, #1a3a7c, #2d5dc0)', color: '#fff', border: '0.5px solid rgba(91,141,238,0.4)', padding: '13px', borderRadius: '10px', fontWeight: '600', fontSize: '15px' }}>
+      Connect Wallet →
+    </button>
+    <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.2)', marginTop: '8px', textAlign: 'center' }}>No signup · MetaMask · Powered by USDC</p>
+  </div>
 
-            {/* About sections */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.25rem' }}>
-                <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '8px' }}>🏆 What is BountyBoard?</div>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.7' }}>A trustless on-chain bounty board where USDC rewards are locked in smart contract escrow and released automatically when work is approved. No middleman. No fees. Just code.</p>
-              </div>
-
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.25rem' }}>
-                <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '8px' }}>
-                  <svg style={{ width: '16px', height: '16px', display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} viewBox="0 0 100 100">
-                    <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
-                    <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
-                  </svg>
-                  What is Arc?
-                </div>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.7' }}>Arc is a Layer-1 blockchain built by Circle that uses USDC as the native gas token. Sub-second finality, EVM compatible, and designed for stablecoin-native finance.</p>
-              </div>
-
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.25rem' }}>
-                <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '8px' }}>💚 What is Circle?</div>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.7' }}>Circle is the company behind USDC — the world's leading regulated dollar digital currency. Their mission is to make money move freely globally. Arc is their stablecoin-native blockchain.</p>
-              </div>
-
-              <div style={{ background: 'linear-gradient(135deg, rgba(26,58,124,0.3), rgba(45,93,192,0.2))', border: '0.5px solid rgba(91,141,238,0.2)', borderRadius: '12px', padding: '1.25rem' }}>
-                <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '1rem' }}>📖 How to get started</div>
-                {[
-                  { step: '01', title: 'Add Arc Testnet', desc: 'Chain ID: 5042002 · RPC: https://rpc.testnet.arc.network' },
-                  { step: '02', title: 'Get test USDC', desc: 'Visit faucet.circle.com and paste your wallet address' },
-                  { step: '03', title: 'Connect wallet', desc: 'Click Connect Wallet above and approve in MetaMask' },
-                  { step: '04', title: 'Post or solve', desc: 'Post a bounty with USDC or solve one and earn' },
-                ].map((s, i) => (
-                  <div key={s.step} style={{ display: 'flex', gap: '12px', marginBottom: i < 3 ? '12px' : 0 }}>
-                    <div style={{ fontSize: '12px', fontWeight: '700', color: '#5b8dee', minWidth: '24px' }}>{s.step}</div>
-                    <div>
-                      <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '2px' }}>{s.title}</div>
-                      <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)' }}>{s.desc}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+  {/* How it works */}
+  <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '16px', padding: '1.25rem' }}>
+    <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '12px' }}>How it works</div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      {[
+        { step: '01', title: 'Post a bounty', desc: 'Lock USDC reward in smart contract escrow' },
+        { step: '02', title: 'Solvers submit work', desc: 'Anyone can compete and submit their work' },
+        { step: '03', title: 'Approve & pay', desc: 'USDC releases instantly to the best solver' },
+      ].map((s, i) => (
+        <div key={s.step} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', paddingBottom: i < 2 ? '10px' : 0, borderBottom: i < 2 ? '0.5px solid rgba(255,255,255,0.05)' : 'none' }}>
+          <div style={{ fontSize: '13px', fontWeight: '700', color: '#5b8dee', minWidth: '24px', marginTop: '1px' }}>{s.step}</div>
+          <div>
+            <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '2px' }}>{s.title}</div>
+            <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)' }}>{s.desc}</div>
           </div>
-        ) : (
-          <div className="page-content" style={{ padding: '2rem 2.5rem', maxWidth: '900px' }}>
-            {activePage === 'dashboard' && <Dashboard setActivePage={setActivePage} />}
-            {activePage === 'browse' && <BountyList />}
-            {activePage === 'post' && <PostBounty onSuccess={() => setActivePage('browse')} />}
-            {activePage === 'profile' && <Profile />}
-            {activePage === 'settings' && <Settings />}
-            {activePage === 'about' && <About />}
-          </div>
-        )}
-      </div>
+        </div>
+      ))}
     </div>
-  )
-}
+  </div>
+
+  {/* Features */}
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+    {[
+      { icon: '🔒', title: 'Trustless escrow', desc: 'No middleman' },
+      { icon: '⚡', title: 'Instant payouts', desc: 'Sub-second finality' },
+      { icon: '💵', title: 'USDC native', desc: 'Stable payments' },
+      { icon: '🌍', title: 'Permissionless', desc: 'Anyone can use it' },
+    ].map(f => (
+      <div key={f.title} style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1rem' }}>
+        <div style={{ fontSize: '22px', marginBottom: '6px' }}>{f.icon}</div>
+        <div style={{ fontSize: '12px', fontWeight: '600', color: '#fff', marginBottom: '2px' }}>{f.title}</div>
+        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.3)' }}>{f.desc}</div>
+      </div>
+    ))}
+  </div>
+
+  {/* About Arc */}
+  <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '16px', padding: '1.25rem' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+      <svg style={{ width: '28px', height: '28px', opacity: 0.8 }} viewBox="0 0 100 100">
+        <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
+        <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
+      </svg>
+      <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff' }}>Built on Arc Network</div>
+    </div>
+    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.6', marginBottom: '10px' }}>Arc is a Layer-1 blockchain built by Circle that uses USDC as the native gas token with sub-second finality.</p>
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {['USDC as gas', 'Sub-second finality', 'EVM compatible', 'Built by Circle'].map(tag => (
+        <span key={tag} style={{ fontSize: '10px', background: 'rgba(91,141,238,0.1)', color: '#5b8dee', border: '0.5px solid rgba(91,141,238,0.2)', borderRadius: '20px', padding: '3px 10px' }}>{tag}</span>
+      ))}
+    </div>
+  </div>
+
+  {/* Get started */}
+  <div style={{ background: 'linear-gradient(135deg, rgba(26,58,124,0.2), rgba(45,93,192,0.1))', border: '0.5px solid rgba(91,141,238,0.15)', borderRadius: '16px', padding: '1.25rem' }}>
+    <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '12px' }}>📖 Get started in 4 steps</div>
+    {[
+      { step: '01', title: 'Add Arc Testnet', desc: 'Chain ID: 5042002' },
+      { step: '02', title: 'Get test USDC', desc: 'faucet.circle.com' },
+      { step: '03', title: 'Connect wallet', desc: 'Click Connect Wallet above' },
+      { step: '04', title: 'Post or solve', desc: 'Start earning USDC' },
+    ].map((s, i) => (
+      <div key={s.step} style={{ display: 'flex', gap: '10px', marginBottom: i < 3 ? '10px' : 0 }}>
+        <div style={{ fontSize: '11px', fontWeight: '700', color: '#5b8dee', minWidth: '22px' }}>{s.step}</div>
+        <div>
+          <div style={{ fontSize: '12px', fontWeight: '600', color: '#fff', marginBottom: '1px' }}>{s.title}</div>
+          <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)' }}>{s.desc}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Footer */}
+  <div style={{ textAlign: 'center', padding: '1rem 0', borderTop: '0.5px solid rgba(255,255,255,0.05)' }}>
+    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)' }}>Built on Arc Testnet · Powered by USDC · <a href="https://github.com/Castro336488/bounty-board" target="_blank" style={{ color: '#5b8dee' }}>GitHub</a></div>
+  </div>
+
+</div>
