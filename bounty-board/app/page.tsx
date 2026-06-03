@@ -62,6 +62,49 @@ export default function Home() {
               Connect Wallet to Start →
             </button>
             <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)', marginTop: '1rem' }}>No signup · MetaMask · Powered by USDC</p>
+            {/* About section for non-connected users */}
+<div style={{ marginTop: '4rem', textAlign: 'left' }}>
+  <div style={{ fontSize: '12px', fontWeight: '700', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px', marginBottom: '1.5rem', textAlign: 'center' }}>ABOUT</div>
+
+  <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.25rem', marginBottom: '12px' }}>
+    <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '8px' }}>🏆 What is BountyBoard?</div>
+    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.7' }}>A trustless on-chain bounty board where USDC rewards are locked in smart contract escrow and released automatically when work is approved. No middleman. No fees. Just code.</p>
+  </div>
+
+  <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.25rem', marginBottom: '12px' }}>
+    <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '8px' }}>
+      <svg style={{ width: '16px', height: '16px', display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} viewBox="0 0 100 100">
+        <path d="M50 5 C25 5, 8 25, 8 50 L8 75 L22 75 L22 50 C22 33, 35 19, 50 19 C65 19, 78 33, 78 50 L78 75 L92 75 L92 50 C92 25, 75 5, 50 5 Z" fill="white"/>
+        <path d="M30 75 L30 60 L70 60 L70 75 Z" fill="white"/>
+      </svg>
+      What is Arc?
+    </div>
+    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.7' }}>Arc is a Layer-1 blockchain built by Circle that uses USDC as the native gas token. Sub-second finality, EVM compatible, and designed for stablecoin-native finance.</p>
+  </div>
+
+  <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '1.25rem', marginBottom: '12px' }}>
+    <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '8px' }}>💚 What is Circle?</div>
+    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: '1.7' }}>Circle is the company behind USDC — the world's leading regulated dollar digital currency. Their mission is to make money move freely globally. Arc is their stablecoin-native blockchain.</p>
+  </div>
+
+  <div style={{ background: 'linear-gradient(135deg, rgba(26,58,124,0.3), rgba(45,93,192,0.2))', border: '0.5px solid rgba(91,141,238,0.2)', borderRadius: '12px', padding: '1.25rem' }}>
+    <div style={{ fontSize: '15px', fontWeight: '600', color: '#fff', marginBottom: '1rem' }}>📖 How to get started</div>
+    {[
+      { step: '01', title: 'Add Arc Testnet', desc: 'Chain ID: 5042002 · RPC: https://rpc.testnet.arc.network' },
+      { step: '02', title: 'Get test USDC', desc: 'Visit faucet.circle.com and paste your wallet address' },
+      { step: '03', title: 'Connect wallet', desc: 'Click Connect Wallet above and approve in MetaMask' },
+      { step: '04', title: 'Post or solve', desc: 'Post a bounty with USDC or solve one and earn' },
+    ].map((s, i) => (
+      <div key={s.step} style={{ display: 'flex', gap: '12px', marginBottom: i < 3 ? '12px' : 0 }}>
+        <div style={{ fontSize: '12px', fontWeight: '700', color: '#5b8dee', minWidth: '24px' }}>{s.step}</div>
+        <div>
+          <div style={{ fontSize: '13px', fontWeight: '600', color: '#fff', marginBottom: '2px' }}>{s.title}</div>
+          <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)' }}>{s.desc}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
             {/* How it works */}
             <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', textAlign: 'left' }}>
