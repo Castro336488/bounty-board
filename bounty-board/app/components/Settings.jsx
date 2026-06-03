@@ -37,7 +37,7 @@ export default function Settings() {
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
           {[
             { label: 'BountyBoard V3', value: '0x7675D2...78683' },s
-            { label: 'USDC', value: '0x360000...000000' },
+{ label: 'USDC', value: '0x360000...000000' },
             { label: 'Version', value: 'V2 — Multi-submission' },
           ].map((item, i) => (
             <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderBottom: i < 2 ? '0.5px solid rgba(255,255,255,0.05)' : 'none' }}>
