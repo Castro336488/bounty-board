@@ -36,9 +36,9 @@ export default function Settings() {
         <h2 style={{ fontSize: '13px', fontWeight: '600', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', marginBottom: '10px' }}>CONTRACT</h2>
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
           {[
-            { label: 'BountyBoard V3', value: '0x7675D2...78683' },s
-{ label: 'USDC', value: '0x360000...000000' },
-            { label: 'Version', value: 'V2 — Multi-submission' },
+            { label: 'BountyBoard V3', value: '0x7675D2...78683' },
+            { label: 'USDC', value: '0x360000...000000' },
+            { label: 'Version', value: 'V3 — Categories & Deadlines' },
           ].map((item, i) => (
             <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderBottom: i < 2 ? '0.5px solid rgba(255,255,255,0.05)' : 'none' }}>
               <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>{item.label}</span>
@@ -49,7 +49,7 @@ export default function Settings() {
       </div>
 
       {/* Coming soon features */}
-      <div>
+      <div style={{ marginBottom: '1.5rem' }}>
         <h2 style={{ fontSize: '13px', fontWeight: '600', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', marginBottom: '10px' }}>COMING SOON</h2>
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
           {[
@@ -70,7 +70,7 @@ export default function Settings() {
       </div>
 
       {/* Links */}
-      <div style={{ marginTop: '1.5rem' }}>
+      <div>
         <h2 style={{ fontSize: '13px', fontWeight: '600', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', marginBottom: '10px' }}>LINKS</h2>
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
           {[
