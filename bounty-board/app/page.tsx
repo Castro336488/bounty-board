@@ -213,12 +213,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Unaudited warning */}
-            <div style={{ background: 'rgba(239,159,39,0.08)', border: '0.5px solid rgba(239,159,39,0.25)', padding: '10px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '14px' }}>⚠️</span>
-              <span style={{ fontSize: '12px', color: 'rgba(239,159,39,0.9)' }}>This contract has not been formally audited. Use at your own risk and start with small amounts.</span>
-            </div>
-
             {/* Mobile bottom nav */}
             <div className="mobile-bottom-nav">
               {navItems.map(item => (
