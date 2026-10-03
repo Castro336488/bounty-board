@@ -20,7 +20,7 @@ export default function Dashboard({ setActivePage }) {
     <div>
       <div style={{ marginBottom: '1.75rem' }}>
         <h1 style={{ fontSize: '20px', fontWeight: '600', color: '#fff', marginBottom: '4px' }}>Dashboard</h1>
-        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)' }}>Overview of all bounty activity on Arc Testnet</p>
+        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)' }}>Overview of all bounty activity on Arc Mainnet</p>
       </div>
 
       {/* Stats */}
